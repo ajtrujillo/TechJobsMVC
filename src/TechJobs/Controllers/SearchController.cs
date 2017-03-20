@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TechJobs.Models;
+using System;
 
 namespace TechJobs.Controllers
 {
@@ -23,18 +24,19 @@ namespace TechJobs.Controllers
             ViewBag.columns = ListController.columnChoices;
             List<Dictionary<string, string>> searchResults = new List<Dictionary<string, string>>();
 
-            if (searchType= "all")
+            if (searchType.Equals("all"))
             {
-                searchResults.Add = JobData.FindbyValue(searchTerm);
+                searchResults.Add(JobData.FindByValue(searchTerm));
             }
 
             else
             {
-                searchResults.Add = JobData.FindByColumnAndValue(searchType, searchTerm);
+                searchResults.Add(JobData.FindByColumnAndValue(searchType, searchTerm));
             }
 
             ViewBag.title = "Search by" + ListController.columnChoices[searchType] + ":" + searchTerm;
             ViewBag.jobs = searchResults;
+            return ViewBag;
         }
 
 
