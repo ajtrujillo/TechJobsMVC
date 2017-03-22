@@ -24,14 +24,17 @@ namespace TechJobs.Controllers
             ViewBag.columns = ListController.columnChoices;
             List<Dictionary<string, string>> searchResults = new List<Dictionary<string, string>>();
 
-            if (searchType.Equals("all"))
+            if (searchType.Equals("All"))//"all?"
+
             {
-                searchResults.Add(JobData.FindByValue(searchTerm));
+                foreach (Dictionary<string, string> row in JobData.FindByValue(searchTerm))
+                { searchResults.Add(row); }
             }
 
             else
             {
-                searchResults.Add(JobData.FindByColumnAndValue(searchType, searchTerm));
+                foreach (Dictionary<string, string> row in JobData.FindByColumnAndValue(searchType, searchTerm))
+                { searchResults.Add(row); }
             }
 
             ViewBag.title = "Search by" + ListController.columnChoices[searchType] + ":" + searchTerm;
