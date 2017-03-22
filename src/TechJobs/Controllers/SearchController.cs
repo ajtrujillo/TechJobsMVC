@@ -18,13 +18,15 @@ namespace TechJobs.Controllers
         // search request and display results
 
         //[Route("/View/Search/Index")]
-        //[HttpPost]
+        [HttpPost]
         public IActionResult Results(string searchType, string searchTerm)
         {
+
+            //Why do we need to pass this in again? Not sure
             ViewBag.columns = ListController.columnChoices;
             List<Dictionary<string, string>> searchResults = new List<Dictionary<string, string>>();
 
-            if (searchType.Equals("All"))//"all?"
+            if (searchType.Equals("all"))
 
             {
                 foreach (Dictionary<string, string> row in JobData.FindByValue(searchTerm))
@@ -37,9 +39,9 @@ namespace TechJobs.Controllers
                 { searchResults.Add(row); }
             }
 
-            ViewBag.title = "Search by" + ListController.columnChoices[searchType] + ":" + searchTerm;
-            ViewBag.jobs = searchResults;
-            return ViewBag;
+            //ViewBag.title = "Search by" + ListController.columnChoices[searchType] + ":" + searchTerm;
+            ViewBag.jobs= searchResults;
+            return Redirect("/Search/Results");
         }
 
 
