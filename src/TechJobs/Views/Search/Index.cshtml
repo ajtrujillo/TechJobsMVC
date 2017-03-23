@@ -47,15 +47,19 @@
 
 
 
+
     @foreach (Dictionary<string, string> job in ViewBag.jobs)
+
     {
-        foreach (KeyValuePair<string, string> kvp in job)
         {
             <table>
                 <tr>
-                    <td> @kvp.Value;</td>
+                    @foreach (KeyValuePair<string, string> kvp in job)
+                    {
+                        <td> @kvp.Value</td>}
                 </tr>
             </table>
         }
-    }}
     }
+}
+}

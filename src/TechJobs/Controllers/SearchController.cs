@@ -18,7 +18,7 @@ namespace TechJobs.Controllers
         // search request and display results
 
         //[Route("/View/Search/Index")]
-        [HttpPost]
+        //[HttpPost]
         public IActionResult Results(string searchType, string searchTerm)
         {
 
