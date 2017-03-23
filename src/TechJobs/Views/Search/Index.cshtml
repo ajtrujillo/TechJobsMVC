@@ -34,23 +34,28 @@
 
     // TODO #2 - Loop over jobs dictionary and display all job fields
 
-    @foreach (KeyValuePair<string, string> column in ViewBag.columns)
-    {   <table class="job-listing">
-            <tr>
-                <th>@ViewBag.columns.Key</th>
-                @*<th>Position Name</th>
-                    <th>Employer Name</th>
-                    <th>Location</th>
-                    <th>Position Type</th>
-                    <th>Skill Requirements</th>*@
-            </tr>
+    //foreach (KeyValuePair<string, string> column in ViewBag.columns)
+    <table class="job-listing">
+        <tr>
+            <th>Position Name</th>
+            <th>Employer Name</th>
+            <th>Location</th>
+            <th>Position Type</th>
+            <th>Skill Requirements</th>
+        </tr>
+    </table>
 
-            foreach (KeyValuePair<string, string>job in ViewBag.jobs)
+
+
+    @foreach (Dictionary<string, string> job in ViewBag.jobs)
     {
+        foreach (KeyValuePair<string, string> kvp in job)
+        {
+            <table>
                 <tr>
-                    <td> @ViewBag.jobs.Value;</td>
+                    <td> @kvp.Value;</td>
                 </tr>
+            </table>
+        }
+    }}
     }
-        </table>
-    }
-}
