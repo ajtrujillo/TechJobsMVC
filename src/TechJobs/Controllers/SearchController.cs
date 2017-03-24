@@ -24,24 +24,27 @@ namespace TechJobs.Controllers
 
             //Why do we need to pass this in again? Not sure
             ViewBag.columns = ListController.columnChoices;
-            List<Dictionary<string, string>> searchResults = new List<Dictionary<string, string>>();
+            List<Dictionary<string, string>> searchResults = JobData.FindByColumnAndValue(searchType, searchTerm);
+            ViewBag.title = "Search by " + ListController.columnChoices[searchType] + ": " + searchTerm;
+            return View("Index");
+            //List<Dictionary<string, string>> searchResults = new List<Dictionary<string, string>>();
 
-            if (searchType.Equals("all"))
+            //if (searchType.Equals("all"))
 
-            {
-                foreach (Dictionary<string, string> row in JobData.FindByValue(searchTerm))
-                { searchResults.Add(row); }
-            }
+            //{
+            //    foreach (Dictionary<string, string> row in JobData.FindByValue(searchTerm))
+            //    { searchResults.Add(row); }
+            //}
 
-            else
-            {
-                foreach (Dictionary<string, string> row in JobData.FindByColumnAndValue(searchType, searchTerm))
-                { searchResults.Add(row); }
-            }
+            //else
+            //{
+            //    foreach (Dictionary<string, string> row in JobData.FindByColumnAndValue(searchType, searchTerm))
+            //    { searchResults.Add(row); }
+            //}
 
-            //ViewBag.title = "Search by" + ListController.columnChoices[searchType] + ":" + searchTerm;
-            ViewBag.jobs= searchResults;
-            return Redirect("/Search/Results");
+            ////ViewBag.title = "Search by" + ListController.columnChoices[searchType] + ":" + searchTerm;
+            //ViewBag.jobs= searchResults;
+            //return Redirect("/Search/Results");
         }
 
 
