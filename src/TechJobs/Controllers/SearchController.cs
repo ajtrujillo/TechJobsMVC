@@ -36,7 +36,5 @@ namespace TechJobs.Controllers
             return View("Index");
         }
 
-
-
     }
 }
